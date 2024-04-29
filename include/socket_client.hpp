@@ -16,7 +16,7 @@ private:
 public:
     SocketClient(const char *ip, int port)
     {
-        sock = socket(PF_INET, SOCK_STREAM, 0);
+        sock = socket(PF_INET, SOCK_STREAM, 0); // 创建 socket
         if (sock == -1) {
             perror("socket() error");
             exit(1);
@@ -27,7 +27,8 @@ public:
         addr.sin_port = htons(port);
         addr.sin_addr.s_addr = inet_addr(ip);
 
-        if (connect(sock, (struct sockaddr *)&addr, sizeof(addr)) == -1) {
+        if (connect(sock, (struct sockaddr *)&addr, sizeof(addr)) ==
+            -1) { // 连接服务器
             perror("connect() error");
             exit(1);
         }
